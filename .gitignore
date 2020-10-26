@@ -1,0 +1,23 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/mc-front/node_modules
+/mc-front/.pnp
+/mc-front/.pnp.js
+
+# testing
+/mc-front/coverage
+
+# production
+/mc-front/build
+
+# misc
+.DS_Store
+/mc-front/.env.local
+/mc-front/.env.development.local
+/mc-front/.env.test.local
+/mc-front/.env.production.local
+
+/mc-front/npm-debug.log*
+/mc-front/yarn-debug.log*
+/mc-front/yarn-error.log*
