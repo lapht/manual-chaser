@@ -21,4 +21,4 @@
 /mc-front/npm-debug.log*
 /mc-front/yarn-debug.log*
 /mc-front/yarn-error.log*
-/mc-front/utils/ConnectionManager.js
+/mc-front/src/utils/ConnectionManager.js
