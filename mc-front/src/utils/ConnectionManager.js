@@ -1,0 +1,1 @@
+export const ServerConnection = "http://lucazanini.ddns.net:3001";

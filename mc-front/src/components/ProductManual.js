@@ -3,6 +3,7 @@ import axios from 'axios';
 import { withRouter } from "react-router";
 import withLoading from './WithLoading';
 import PDFViewer from './PDFViewer';
+import { ServerConnection } from '../utils/ConnectionManager';
 
 class ProductManual extends React.Component {
 	state = {
@@ -21,7 +22,7 @@ class ProductManual extends React.Component {
 		const manualId = val;
 		
 		if (manualId !== "") {
-			await axios.post(`http://localhost:3001/manual`, { manualId })
+			await axios.post(ServerConnection + `/manual`, { manualId })
 			.then(res => {
                 if (res.data.length > 0){
                     const manual = res.data[0];

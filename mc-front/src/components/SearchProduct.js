@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import ProductList from './ProductsList';
 import withListLoading from './WithLoading';
+import {ServerConnection} from './../utils/ConnectionManager';
 
 export default class SearchProduct extends React.Component {
     state = {
@@ -21,7 +22,7 @@ export default class SearchProduct extends React.Component {
         const filter = val;
         
         if (filter !== "") {
-            await axios.post(`http://localhost:3001/search`, { filter })
+            await axios.post(ServerConnection + '/search', { filter })
             .then(res => {
                 const products = res.data;
                 this.setState({ products, loading: false });

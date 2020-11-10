@@ -4,6 +4,7 @@ import { withRouter } from "react-router";
 import withLoading from './WithLoading';
 import ProductInfo from './ProductInfo';
 import ProductManuals from './ProductManuals';
+import {ServerConnection} from './../utils/ConnectionManager';
 
 class ProductDetail extends React.Component {
 	state = {
@@ -25,7 +26,7 @@ class ProductDetail extends React.Component {
 		const productId = val;
 		
 		if (productId !== "") {
-			await axios.post(`http://localhost:3001/manuals`, { productId })
+			await axios.post(ServerConnection + `/manuals`, { productId })
 			.then(res => {
 				const manuals = res.data;
 				this.setState({ manuals, loadingManuals: false });
@@ -44,7 +45,7 @@ class ProductDetail extends React.Component {
 		const productId = val;
 		
 		if (productId !== "") {
-			await axios.post(`http://localhost:3001/product`, { productId })
+			await axios.post(ServerConnection + `/product`, { productId })
 			.then(res => {
 				const product = res.data;
 				this.setState({ product, loadingProductInfo: false });
