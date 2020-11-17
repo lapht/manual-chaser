@@ -1,7 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import ProductList from 'components/ProductsList';
-import withListLoading from 'components/WithLoading';
+import ProductList from 'components/ProductsList/ProductsList';
+
+//utils
+import withListLoading from 'utils/WithLoading';
 import {ServerConnection} from 'utils/ConnectionManager';
 
 //components
@@ -13,11 +15,6 @@ export default class SearchProduct extends React.Component {
         products: null,
         loading: false
     }
-
-    /*onChangeHandler = async e => {
-        this.search(e.target.value);
-        this.setState({ filter: e.target.value });
-    }*/
 
     search = async val => {
         this.setState({ loading: true });
@@ -43,7 +40,7 @@ export default class SearchProduct extends React.Component {
             console.log(this.props.filter);
             this.setState({ filter: this.props.filter });
             this.search(this.props.filter);
-        } else if (this.props.filter == null || this.props.filter.length == 0){
+        } else if (this.props.filter == null || this.props.filter.length === 0){
             return (
                 <LandingPage />
             );
@@ -53,11 +50,6 @@ export default class SearchProduct extends React.Component {
 
         return (
         <div>
-            {/*<form>
-                <input type="text" name="name" value={this.state.filter} onChange={e => this.onChangeHandler(e)} />
-                <button type="submit">Cerca</button>
-            </form>
-            <br/>*/}
             <div className='repo-container'>
                 <ListLoading isLoading={this.state.loading} products={this.state.products} />
             </div>

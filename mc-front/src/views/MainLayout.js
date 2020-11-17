@@ -15,8 +15,7 @@ import CustomInput from "components/CustomInput/CustomInput.js";
 
 //views
 import SearchProduct from 'components/SearchProducts/SearchProduct';
-import ProductDetail from './../components/ProductDetail';
-import ProductManual from './../components/ProductManual';
+import ProductDetail from 'components/ProductDetail/ProductDetail';
 
 //styles
 import styles from "assets/jss/material-kit-react/views/landingPage.js";
@@ -81,7 +80,7 @@ class MainLayout extends Component {
                             <Switch>
                                 <Route exact path="/"><SearchProduct filter={this.state.filter}/></Route>
                                 <Route path="/ProductDetail/:productId"><ProductDetail/></Route>
-                                <Route path="/ProductManual/:manualId"><ProductManual/></Route>
+                                {/*<Route path="/ProductManual/:manualId"><ProductManual/></Route>*/}
                             </Switch>
                         </div>
                     </div>

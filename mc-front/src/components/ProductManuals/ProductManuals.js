@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const ProductManuals = (props) => {
     const { manuals } = props;
@@ -37,7 +36,7 @@ const ProductManuals = (props) => {
                                     {manual.lingua}
                                 </td>
                                 <td>
-                                    <Link to={`/ProductManual/${manual.id}`} role="button">Vai</Link>
+                                    BOTTONE{/*<Link to={`/ProductManual/${manual.id}`} role="button">Vai</Link>*/}
                                 </td>
                             </tr>
                         )

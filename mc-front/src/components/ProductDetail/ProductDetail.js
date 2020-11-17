@@ -1,10 +1,15 @@
 import React from 'react';
 import axios from 'axios';
 import { withRouter } from "react-router";
-import withLoading from './WithLoading';
-import ProductInfo from './ProductInfo';
-import ProductManuals from './ProductManuals';
-import {ServerConnection} from './../utils/ConnectionManager';
+
+//utils
+import withLoading from 'utils/WithLoading';
+import {ServerConnection} from 'utils/ConnectionManager';
+
+//views
+import ProductInfo from 'components/ProductInfo/ProductInfo';
+import ProductManuals from 'components/ProductManuals/ProductManuals';
+
 
 class ProductDetail extends React.Component {
 	state = {

@@ -1,6 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './../assets/css/ProductsList.css';
+
+//assets
+import 'assets/css/ProductsList.css';
+
+//core components
+import GridContainer from "components/Grid/GridContainer.js";
+import GridItem from "components/Grid/GridItem.js";
 
 const ProductsList = (props) => {
     const { products } = props;
@@ -13,8 +19,16 @@ const ProductsList = (props) => {
 
     return (
         <div>
-            <h2 className='list-head'>Prodotti:</h2>
-            <div className="row">
+            <GridContainer>
+                {products.map((product) => {
+                    return (
+                        <GridItem xs={12} sm={12} md={4}>
+                            <h2>{product.descrizione}</h2>
+                        </GridItem>
+                    )
+                })}
+            </GridContainer>
+            {/*<div className="row">
             {products.map((product) => {
                 return (
                     <div key={product.id} className="col-md-6">
@@ -32,7 +46,7 @@ const ProductsList = (props) => {
                     </div>
                 )
             })}
-            </div>
+            </div>*/}
         </div>    
     );
 };
