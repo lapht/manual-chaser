@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 //assets
 import 'assets/css/ProductsList.css';
@@ -7,6 +6,9 @@ import 'assets/css/ProductsList.css';
 //core components
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
+
+//components
+import ProductCard from "components/ProductCard/ProductCard";
 
 const ProductsList = (props) => {
     const { products } = props;
@@ -23,7 +25,7 @@ const ProductsList = (props) => {
                 {products.map((product) => {
                     return (
                         <GridItem xs={12} sm={12} md={4}>
-                            <h2>{product.descrizione}</h2>
+                            <ProductCard product={product}/>
                         </GridItem>
                     )
                 })}
