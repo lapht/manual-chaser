@@ -6,10 +6,19 @@ import { withRouter } from "react-router";
 import withLoading from 'utils/WithLoading';
 import {ServerConnection} from 'utils/ConnectionManager';
 
+// @material-ui/icons
+import Description from "@material-ui/icons/Description";
+import LiveHelp from "@material-ui/icons/LiveHelp";
+import Link from "@material-ui/icons/Link";
+
+//core components
+import NavPills from "components/NavPills/NavPills.js";
+import GridContainer from "components/Grid/GridContainer.js";
+import GridItem from "components/Grid/GridItem.js";
+
 //views
 import ProductInfo from 'components/ProductInfo/ProductInfo';
 import ProductManuals from 'components/ProductManuals/ProductManuals';
-
 
 class ProductDetail extends React.Component {
 	state = {
@@ -66,12 +75,46 @@ class ProductDetail extends React.Component {
 	render() {
 		const DataLoading = withLoading(ProductInfo);
 		const ManualsLoading = withLoading(ProductManuals);
-		console.log('Product id: ' + this.state.productId);
 
 		return (
 			<div>
 				<DataLoading isLoading={this.state.loadingProductInfo} product={this.state.product} />
-				<ManualsLoading isLoading={this.state.loadingManuals} manuals={this.state.manuals} />
+				<GridContainer justify="center">
+					<GridItem 
+						xs={12} 
+						sm={12} 
+						md={10} 
+						style={{margin: "20px auto 50px auto", textAlign: "center"}}
+					>
+						<NavPills
+							alignCenter
+							color="primary"
+							tabs={[
+								{
+									tabButton: "Manuals",
+									tabIcon: Description,
+									tabContent: (
+										<ManualsLoading isLoading={this.state.loadingManuals} manuals={this.state.manuals} />
+									)
+								},
+								{
+									tabButton: "FAQ",
+									tabIcon: LiveHelp,
+									tabContent: (
+										<div style={{backgroundColor:"red", width:"100%"}}><p>FAQ</p></div>
+									)
+								},
+								{
+									tabButton: "Related",
+									tabIcon: Link,
+									tabContent: (
+										<div style={{backgroundColor:"red", width:"100%"}}><p>Related</p></div>
+									)
+								}
+							]}
+						/>
+					</GridItem>
+				</GridContainer>
 			</div>
 		);
 	}

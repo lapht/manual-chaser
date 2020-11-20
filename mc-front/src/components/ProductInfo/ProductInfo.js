@@ -1,7 +1,35 @@
 import React from 'react';
 
+// nodejs library that concatenates classes
+import classNames from "classnames";
+
+// @material-ui/core components
+import { makeStyles } from "@material-ui/core/styles";
+
+//fontawesome
+import { faFlag, faShare, faStar } from '@fortawesome/free-solid-svg-icons'
+
+//core components
+import GridContainer from "components/Grid/GridContainer.js";
+import GridItem from "components/Grid/GridItem.js";
+import Button from "components/CustomButtons/Button.js";
+
+//fontawesome component
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+//styles
+import styles from "assets/jss/material-kit-react/views/profilePage.js";
+
+const useStyles = makeStyles(styles);
+
 const ProductInfo = (props) => {
     const { product } = props;
+    const classes = useStyles();
+    const imageClasses = classNames(
+        classes.imgRaised,
+        classes.imgRoundedCircle,
+        classes.imgFluid
+    );
 
     if (!product)
         return <br/>;
@@ -12,26 +40,39 @@ const ProductInfo = (props) => {
     let data = product[0];
 
     return (
-        <div>
-            <table>
-                <tbody>
-                    <tr>
-                        <td rowSpan="2">
-                            <><img className="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src={data.imageurl}></img></>
-                        </td>
-                        <td>
-                            <h2 className='list-head'>{data.nome}</h2>
-                            <h4>{data.nomeproduttore}</h4>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>{data.descrizione}</p>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>    
+        <div style={{color: "#3c4858"}} >
+            <GridContainer justify="center">
+                <GridItem xs={12} sm={12} md={6}>
+                    <div className={classes.profile}>
+                        <div>
+                            <img 
+                                src={data.imageurl} 
+                                alt="..."  
+                                className={imageClasses} 
+                            />
+                        </div>
+                        <div className={classes.name}>
+                            <h3>{data.nome}</h3>
+                            <h6>{data.nomefornitore}</h6>
+                            <Button justIcon link className={classes.margin5}>
+                                <FontAwesomeIcon icon={faStar}/>
+                            </Button>
+                            <Button justIcon link className={classes.margin5}>
+                                <FontAwesomeIcon icon={faShare}/>
+                            </Button>
+                            <Button justIcon link className={classes.margin5}>
+                                <FontAwesomeIcon icon={faFlag}/>
+                            </Button>
+                        </div>
+                        <div className={classes.description}>
+                            <p>
+                                {data.descrizione}
+                            </p>
+                        </div>
+                    </div>
+                </GridItem>
+            </GridContainer>
+        </div>  
     );
 };
 

@@ -53,7 +53,7 @@ class MainLayout extends Component {
                         }} 
                         //{...rest} //if is not class
                     />
-                    <Parallax filter style={{
+                    <Parallax small filter style={{
                         backgroundColor: "purple",
                         color: "white"
                     }}>
