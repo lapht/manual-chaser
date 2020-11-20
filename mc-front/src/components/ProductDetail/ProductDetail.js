@@ -101,7 +101,7 @@ class ProductDetail extends React.Component {
 									tabButton: "FAQ",
 									tabIcon: LiveHelp,
 									tabContent: (
-										<div style={{backgroundColor:"red", width:"100%"}}><p>FAQ</p></div>
+										<div style={{backgroundColor:"red", width:"100%", height:"600px"}}><p>FAQ</p></div>
 									)
 								},
 								{
