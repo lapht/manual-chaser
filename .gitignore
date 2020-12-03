@@ -2,6 +2,7 @@
 
 # dependencies
 /mc-front/node_modules
+/firestore-algolia-sync/node_modules
 /mc-front/.pnp
 /mc-front/.pnp.js
 
