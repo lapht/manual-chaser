@@ -10,6 +10,9 @@ import GridItem from "components/Grid/GridItem.js";
 //components
 import ProductCard from "components/ProductCard/ProductCard";
 
+//algolia logo
+import algoliaLogo from "assets/img/algolia_logo.png"
+
 const ProductsList = (props) => {
     const { products } = props;
 
@@ -21,6 +24,7 @@ const ProductsList = (props) => {
 
     return (
         <div>
+            {/*<img src={algoliaLogo}>Search by algolia</img>*/}
             <GridContainer>
                 {products.map((product) => {
                     return (

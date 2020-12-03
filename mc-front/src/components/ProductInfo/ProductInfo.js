@@ -37,7 +37,7 @@ const ProductInfo = (props) => {
     if (product.length === 0) 
         return <p>Nessun prodotto trovato.</p>;
 
-    let data = product[0];
+    let data = product;
 
     return (
         <div style={{color: "#3c4858"}} >
@@ -52,8 +52,8 @@ const ProductInfo = (props) => {
                             />
                         </div>
                         <div className={classes.name}>
-                            <h3>{data.nome}</h3>
-                            <h6>{data.nomefornitore}</h6>
+                            <h3>{data.name}</h3>
+                            <h6>{data.brand}</h6>
                             <Button justIcon link className={classes.margin5}>
                                 <FontAwesomeIcon icon={faStar}/>
                             </Button>
@@ -66,7 +66,7 @@ const ProductInfo = (props) => {
                         </div>
                         <div className={classes.description}>
                             <p>
-                                {data.descrizione}
+                                {data.description}
                             </p>
                         </div>
                     </div>

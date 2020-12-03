@@ -1,33 +1,36 @@
 import React from 'react';
-import axios from 'axios';
 import ProductList from 'components/ProductsList/ProductsList';
 
 //utils
 import withListLoading from 'utils/WithLoading';
-import {ServerConnection} from 'utils/ConnectionManager';
 
 //components
 import LandingPage from 'views/LandingPage';
+import algoliasearch from 'algoliasearch';
 
 export default class SearchProduct extends React.Component {
     state = {
         filter: '',
         products: null,
-        loading: false
+        loading: false,
+        algolia: null,
+        algoliaindex: null
     }
+
+    componentDidMount() {
+		let algolia = algoliasearch('XJH23A38DB', '9d11533f9834cc8edfa503ec55fd67f3');
+        let algoliaindex = algolia.initIndex('manualchaser_product')
+        this.setState({ algolia, algoliaindex });
+	}
 
     search = async val => {
         this.setState({ loading: true });
-
         const filter = val;
         
         if (filter !== "") {
-            await axios.post(ServerConnection + '/search', { filter })
-            .then(res => {
-                const products = res.data;
-                this.setState({ products, loading: false });
-
-                console.log(this.state.products);
+            // only query string
+            this.state.algoliaindex.search(filter).then(({ hits }) => {
+                this.setState({products: hits, loading: false});
             });
         }
         else {

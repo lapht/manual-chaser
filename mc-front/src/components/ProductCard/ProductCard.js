@@ -23,9 +23,9 @@ const useStyles = makeStyles(styles);
 export default function Cards(props) {
     const classes = useStyles();
     let product = props.product;
-    var ProductDescription = product.descrizione;
+    var ProductDescription = product.description;
 
-    if (product.descrizione.length >= 80)
+    if (product.description.length >= 80)
         ProductDescription = ProductDescription.substring(0, 77) + "...";
 
     return (
@@ -33,14 +33,14 @@ export default function Cards(props) {
             <img
                 style={{height: "180px", width: "100%", display: "block", objectFit: "contain"}}
                 className={classes.imgCardTop}
-                src={product.imageurl}
+                src={product.imgurl}
                 alt="Card-img-cap"
             />
             <CardBody>
-                <h4 className={classes.cardTitle}>{product.nome}</h4>
-                <small>{product.nomefornitore}</small>
+                <h4 className={classes.cardTitle}>{product.name}</h4>
+                <small>{product.brand}</small>
                 <p>{ProductDescription}</p>
-                <Link to={`/ProductDetail/${product.id}`}>
+                <Link to={`/ProductDetail/${product.objectID}`}>
                     <Button color="primary">Pagina del prodotto</Button>
                 </Link>
             </CardBody>

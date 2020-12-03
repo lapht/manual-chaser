@@ -32,14 +32,14 @@ const ProductManuals = (props) => {
                 columns={
                     [
                         { 
-                            field: "descrizione", 
+                            field: "description", 
                             headerName: "Description", 
                             description: "Description",
                             flex: 1,
                             align: "left"
                         },
                         { 
-                            field: "lingua", 
+                            field: "language", 
                             headerName: "Language", 
                             description: "Language",
                             flex: 0.2,
@@ -66,40 +66,6 @@ const ProductManuals = (props) => {
                 hideFooterRowCount="true"
                 disableSelectionOnClick="true"
             />
-        
-        {/*
-            <table>
-                <thead>
-                    <tr style={{border: "1px solid black"}}>
-                        <th>
-                            Descrizione
-                        </th>
-                        <th>
-                            Lingua
-                        </th>
-                        <th>
-                            Manuale
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {manuals.map((manual) => {
-                        return (
-                            <tr key={manual.id} style={{border: "1px solid black"}}>
-                                <td>
-                                    {manual.descrizione}
-                                </td>
-                                <td>
-                                    {manual.lingua}
-                                </td>
-                                <td>
-                                    BOTTONE{/*<Link to={`/ProductManual/${manual.id}`} role="button">Vai</Link>
-                                </td>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </table>*/}
         </div>
     );
 };

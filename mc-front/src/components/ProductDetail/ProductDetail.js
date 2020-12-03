@@ -1,10 +1,9 @@
 import React from 'react';
-import axios from 'axios';
 import { withRouter } from "react-router";
 
 //utils
 import withLoading from 'utils/WithLoading';
-import {ServerConnection} from 'utils/ConnectionManager';
+import firebase from 'utils/Firestore.js';
 
 // @material-ui/icons
 import Description from "@material-ui/icons/Description";
@@ -34,41 +33,66 @@ class ProductDetail extends React.Component {
 		this.readManuals(this.state.productId);
 	}
 
-	readManuals = async val => {
-		this.setState({ loadingManuals: true });
-
-		const productId = val;
-		
-		if (productId !== "") {
-			await axios.post(ServerConnection + `/manuals`, { productId })
-			.then(res => {
-				const manuals = res.data;
-				this.setState({ manuals, loadingManuals: false });
-
-				console.log(this.state.manuals);
-			});
+	setProductInfo = async doc => {
+		if (doc.exists) {
+			let product = doc.data();
+			this.setState({ product, loadingProductInfo: false });
+		} else {
+			console.log("No such document!");
 		}
-		else {
-			this.setState({ manuals: null, loadingManuals: false });
+	}
+
+	setManuals = async manuals => {
+		if (manuals.length > 0) {
+			this.setState({ manuals, loadingManuals: false });
+		} else {
+			console.log("No such document!");
 		}
 	}
 
 	readProductInfo = async val => {
 		this.setState({ loadingProductInfo: true });
+		let db = firebase.firestore();
 
 		const productId = val;
 		
 		if (productId !== "") {
-			await axios.post(ServerConnection + `/product`, { productId })
-			.then(res => {
-				const product = res.data;
-				this.setState({ product, loadingProductInfo: false });
+			let docRef = db.collection('products').doc(productId);
+			docRef.get().then(
+				doc => this.setProductInfo(doc)
+			).catch(function(error) {
+				console.log("Error getting document:", error);
+			});
+        }
+		else {
+			this.setState({ product: null, loadingProductInfo: false });
+		}
+	}
 
-				console.log(this.state.product);
+	readManuals = async val => {
+		this.setState({ loadingManuals: true });
+		let db = firebase.firestore();
+
+		const productId = val;
+		let manualsList = [];
+		
+		if (productId !== "") {
+			let collRef = db.collection('products').doc(productId).collection('manuals');
+			collRef.get().then(querySnapshot => {
+				querySnapshot.forEach(doc => {
+					let manual = doc.data();
+					manual.id = doc.id;
+					
+					manualsList.push(manual)
+				});
+
+				this.setManuals(manualsList);
+			}).catch(function(error) {
+				console.log("Error getting document:", error);
 			});
 		}
 		else {
-			this.setState({ product: null, loadingProductInfo: false });
+			this.setState({ manuals: null, loadingManuals: false });
 		}
 	}
 

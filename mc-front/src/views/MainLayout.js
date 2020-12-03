@@ -29,8 +29,9 @@ class MainLayout extends Component {
         filter: ''
     }
 
-    onChangeHandler = async e => {console.log('mainlayout' + e);
-        this.setState({ filter: e.target.value });
+    onChangeHandler = async e => {
+        if (e.key === "Enter")
+            this.setState({ filter: e.target.value });
     }
 
     render(){
@@ -61,14 +62,15 @@ class MainLayout extends Component {
                             <GridContainer>
                                 <GridItem xs={12} sm>
                                     <CustomInput
-                                        labelText="Search your product"
+                                        labelText="Search your product and press ENTER"
                                         id="filter"
                                         formControlProps={{
                                             fullWidth: true
                                         }}
                                         white={true}
                                         inputProps={{
-                                            onChange: (e => this.onChangeHandler(e))
+                                            //onChange: (e => this.onChangeHandler(e))
+                                            onKeyDown: (e => this.onChangeHandler(e))
                                         }}
                                     />
                                 </GridItem>
